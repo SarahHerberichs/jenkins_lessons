@@ -1,43 +1,42 @@
-const path = require('path');
+const path = require("path");
 
-const express = require('express');
+const express = require("express");
 
 const app = express();
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 
-app.get('/', (req, res) => {
-  const filePath = path.join(__dirname, 'views', 'welcome.html');
+app.get("/", (req, res) => {
+  const filePath = path.join(__dirname, "views", "welcome.html");
   res.sendFile(filePath);
 });
 
-
-app.get('/etudiant/:id', function(req, res){
-
-  const {id} = req.params;
+app.get("/etudiant/:id", function (req, res) {
+  const { id } = req.params;
 
   const etudiants = [
-
     {
-        "id" : 1 ,
-        "name" : "Alain",
-        "age" : 22 
+      id: 1,
+      name: "Alain",
+      age: 22,
     },
     {
-        "id" : 2 ,
-        "name" : "Céline",
-        "age" : 40 
-    }
+      id: 2,
+      name: "Céline",
+      age: 40,
+    },
   ];
 
-  const etudiant = etudiants.find(function(e){
-    return e.id === parseInt(id) ;
-  })
+  const etudiant = etudiants.find(function (e) {
+    return e.id === parseInt(id);
+  });
+  console.log("hello");
 
   res.json(etudiant);
+});
 
-})
+const serveur = app.listen(80, function () {
+  console.log("serveur express start");
+});
 
-const serveur = app.listen(80 , function(){ console.log("serveur express start") });
-
-module.exports = serveur ;
+module.exports = serveur;
