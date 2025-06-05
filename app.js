@@ -30,7 +30,7 @@ app.get("/etudiant/:id", function (req, res) {
   const etudiant = etudiants.find(function (e) {
     return e.id === parseInt(id);
   });
-  console.log("hello");
+  console.log("Bonjour");
 
   res.json(etudiant);
 });
